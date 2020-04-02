@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Memory Game</string>
+    <string name="info">Hra sa načítava</string>
+    <string name="info2">Počkajte prosím</string>
+    <string name="play">Hrať</string>
+    <string name="exit">Koniec</string>
+</resources>
