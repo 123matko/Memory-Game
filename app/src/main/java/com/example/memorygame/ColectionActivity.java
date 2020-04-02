@@ -8,12 +8,12 @@ import android.view.WindowManager;
 
 import static android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
 
-public class GameActivity extends Activity {
+public class ColectionActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
+        setContentView(R.layout.activity_colection);
 
         setRequestedOrientation(SCREEN_ORIENTATION_LANDSCAPE);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);

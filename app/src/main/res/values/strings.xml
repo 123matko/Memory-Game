@@ -1,7 +1,9 @@
 <resources>
-    <string name="app_name">Memory Game</string>
+    <string name="app_name">Pexeso</string>
     <string name="info">Hra sa načítava</string>
     <string name="info2">Počkajte prosím</string>
     <string name="play">Hrať</string>
+    <string name="colection">Kolekcia</string>
     <string name="exit">Koniec</string>
+    <string name="player">Hráč</string>
 </resources>
