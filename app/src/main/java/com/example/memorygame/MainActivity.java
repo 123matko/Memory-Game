@@ -15,11 +15,9 @@ import static android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
 
 public class MainActivity extends Activity {
     private int[] colection={};
-    private Button play,exit;
+    private Button play;
     private ImageButton colection_button;
     public static final String EXTRA_GAME= "com.example.memorygame.EXTRA_GAME";
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +38,9 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 Game game;
                 if (colection.length==0){
-                    game=new Game(getResources().getString(R.string.player));
+                    game=new Game(getResources().getString(R.string.player1),getResources().getString(R.string.player2));
                 }else {
-                    game = new Game(colection, getResources().getString(R.string.player));
+                    game = new Game(colection, getResources().getString(R.string.player1),getResources().getString(R.string.player2));
                 }
                 startGame(game);
             }
@@ -57,7 +55,6 @@ public class MainActivity extends Activity {
 
     private void init(){
         play=findViewById(R.id.play);
-        exit=findViewById(R.id.exit);
         colection_button=findViewById(R.id.colection);
     }
 
