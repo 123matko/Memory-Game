@@ -24,6 +24,7 @@
         android:layout_marginTop="50dp"
         android:text="@string/hrac1"
         android:textSize="20dp"
+        android:labelFor="@id/meno1"
         />
 
     <EditText
@@ -48,6 +49,7 @@
         android:layout_marginTop="8dp"
         android:text="@string/hrac2"
         android:textSize="20dp"
+        android:labelFor="@id/meno2"
          />
 
     <EditText

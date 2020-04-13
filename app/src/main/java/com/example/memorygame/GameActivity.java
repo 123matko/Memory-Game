@@ -1,23 +1,16 @@
 package com.example.memorygame;
 
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
-import android.app.ActionBar;
 import android.app.Activity;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
-import android.widget.ImageSwitcher;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,7 +18,7 @@ import java.util.Collections;
 import static android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
 
 public class GameActivity extends Activity {
-    public static int[] rozmer={4,4};
+    public static int[] rozmer = {4, 4};
     private GridLayout gridLayout;
     private ArrayList<ImageButton> pexeso;
     private TextView hrac1;
@@ -33,21 +26,21 @@ public class GameActivity extends Activity {
     private TextView body1;
     private TextView body2;
     Activity activity;
-    View view;
+
     int hracS = 0;
-    private ArrayList<Integer> odhalene=new ArrayList<>(2);
-    private ArrayList<Integer> stlacene=new ArrayList<>();
-    private ArrayList<Integer> najdene=new ArrayList<>();
+    private ArrayList<Integer> odhalene = new ArrayList<>(2);
+    private ArrayList<Integer> stlacene = new ArrayList<>();
+    private ArrayList<Integer> najdene = new ArrayList<>();
     private Game game;
     private int[] obrPexesa1;
     private ArrayList<Integer> zvolene = new ArrayList<>();
     private TextView vyhral;
     boolean par;
-    int cakaj=2000;
-    Handler handler=new Handler();
-    int kto=0;
-    int bodyH1=0;
-    int bodyH2=0;
+    int cakaj = 2000;
+    Handler handler = new Handler();
+    int kto = 0;
+    int bodyH1 = 0;
+    int bodyH2 = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,19 +51,17 @@ public class GameActivity extends Activity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 
-        activity=this;
+        activity = this;
 
         initPexeso();
-        hra();
+        game();
     }
-
-
 
 
     @SuppressLint("NewApi")
     public void initPexeso() {
-        game=(Game)getIntent().getSerializableExtra(MainActivity.EXTRA_GAME);
-        obrPexesa1=game.getColection();
+        game = (Game) getIntent().getSerializableExtra(MainActivity.EXTRA_GAME);
+        obrPexesa1 = game.getColection();
         hrac1 = findViewById(R.id.player1);
         hrac1.setText(game.getPlayer1());
         hrac2 = findViewById(R.id.player2);
@@ -84,7 +75,7 @@ public class GameActivity extends Activity {
         gridLayout.setRowCount(rozmer[1]);
 
         for (int i = 0; i < rozmer[0] * rozmer[1]; i++) {
-            ImageButton button=new ImageButton(activity);
+            ImageButton button = new ImageButton(activity);
 
             pexeso.add(button);
 
@@ -92,7 +83,7 @@ public class GameActivity extends Activity {
             gridLayout.addView(pexeso.get(i));
         }
         for (int i = 0; i < rozmer[0] * rozmer[1]; i++) {
-           int minHeight = 150;
+            int minHeight = 150;
             int minWidth = 150;
 
             pexeso.get(i).setMinimumHeight(minHeight);
@@ -103,8 +94,8 @@ public class GameActivity extends Activity {
     }
 
     @SuppressLint("NewApi")
-    public void otoc(){
-        hracS=0;
+    public void flip() {
+        hracS = 0;
         stlacene.clear();
         for (int i = 0; i < 16; i++) {
             pexeso.get(i).setBackground(activity.getDrawable(R.mipmap.pozadie_pexesa));
@@ -118,63 +109,66 @@ public class GameActivity extends Activity {
             }
         }
     }
-    public void blik(int a){
-        switch (a){
-            case 1: body1.setBackgroundColor(Color.TRANSPARENT);
+
+    public void blink(int a) {
+        switch (a) {
+            case 1:
+                body1.setBackgroundColor(Color.TRANSPARENT);
                 break;
-            case 2: body2.setBackgroundColor(Color.TRANSPARENT);
+            case 2:
+                body2.setBackgroundColor(Color.TRANSPARENT);
                 break;
 
         }
     }
-    public void nasiel(){
+
+    public void found() {
 
 
-        if(odhalene.get(1).equals(odhalene.get(0))){
+        if (odhalene.get(1).equals(odhalene.get(0))) {
 
-            if(kto%2==0||kto==0){
+            if (kto % 2 == 0 || kto == 0) {
                 bodyH1++;
                 body1.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        blik(1);
+                        blink(1);
                     }
-                },500);
-                par=true;
+                }, 500);
+                par = true;
 
-            }
-            else {
+            } else {
                 bodyH2++;
                 body2.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        blik(2);
+                        blink(2);
                     }
-                },500);
-                par=true;
+                }, 500);
+                par = true;
             }
-        }
-        else{
+        } else {
 
-            par=false;
+            par = false;
         }
         odhalene.clear();
     }
-    public void kontrola(boolean x) {
 
-        if(hracS>2){
-            otoc();
+    public void control(boolean x) {
+
+        if (hracS > 2) {
+            flip();
         }
         if (hracS == 2) {
 
-            nasiel();
+            found();
             if (par) {
                 najdene.addAll(stlacene);
                 stlacene.clear();
                 hracS = 0;
-                hrajHru();
+                playGame();
 
             } else {
                 stlacene.clear();
@@ -192,29 +186,29 @@ public class GameActivity extends Activity {
                 }
                 hracS = 0;
 
-                otoc();
+                flip();
             }
         }
         if (najdene.size() == 16) {
-           /* handler.postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    vysledok();
+                    result();
                 }
-            },2500);
-*/
+            }, 2500);
+
         }
     }
 
-    public void hrajHru(){
-        if (kto==0) {
+    public void playGame() {
+        if (kto == 0) {
             hrac1.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         }
-        body1.setText(getString(R.string.uhadnute)+" "+String.valueOf(bodyH1));
-        body2.setText(getString(R.string.uhadnute)+" "+String.valueOf(bodyH2));
+        body1.setText(getString(R.string.uhadnute) + " " + String.valueOf(bodyH1));
+        body2.setText(getString(R.string.uhadnute) + " " + String.valueOf(bodyH2));
 
 
-        for(int i=0;i<rozmer[0]*rozmer[1];i++) {
+        for (int i = 0; i < rozmer[0] * rozmer[1]; i++) {
             final int finalI = i;
 
             pexeso.get(i).setOnClickListener(new View.OnClickListener() {
@@ -228,7 +222,7 @@ public class GameActivity extends Activity {
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            kontrola(false);
+                            control(false);
                         }
                     }, cakaj);
 
@@ -237,10 +231,9 @@ public class GameActivity extends Activity {
         }
 
 
-
     }
 
-    public void hra() {
+    public void game() {
         //initPexeso();
 
         hrac1.setText(game.getPlayer1());
@@ -258,34 +251,34 @@ public class GameActivity extends Activity {
         Collections.shuffle(zvolene);
 
 
-
-        hrajHru();
-
+        playGame();
 
 
     }
-    /* public void vysledok(){
 
-        activity.setContentView(R.layout.activity_result);
-        activity.setRequestedOrientation(SCREEN_ORIENTATION_LANDSCAPE);
-        initVysledok();
+    public void result() {
+
+
         if (bodyH1 > bodyH2) {
-            vyhral.setText(getString(R.string.hrac) +" "+ MainActivity.hrac_1 +" "+ getString(R.string.vyhral));
-        }
-        else {
-            if (bodyH1 < bodyH2) {
-                vyhral.setText(getString(R.string.hrac)+" " + MainActivity.hrac_2 +" "+ getString(R.string.vyhral));
-            }
-            if (bodyH1 == bodyH2) {
-                vyhral.setText(getString(R.string.remiza));
-            }
-        }
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                activity.recreate();
 
+            Toast.makeText(getApplicationContext(), getString(R.string.player) + " " +game.getPlayer1() + " " + getString(R.string.vyhral), Toast.LENGTH_SHORT).show();
+        } else {
+            if (bodyH1 < bodyH2) {
+                Toast.makeText(getApplicationContext(), getString(R.string.player) + " " +game.getPlayer2() + " " + getString(R.string.vyhral), Toast.LENGTH_SHORT).show();
             }
-        },5000);
-    }*/
+        }
+        if (bodyH1 == bodyH2) {
+            Toast.makeText(getApplicationContext(),  getString(R.string.remiza), Toast.LENGTH_SHORT).show();
+        }
+
+
+        handler.postDelayed(new Runnable() {
+        @Override
+        public void run () {
+            activity.finish();
+
+        }
+    },5000);
 }
+    }
+

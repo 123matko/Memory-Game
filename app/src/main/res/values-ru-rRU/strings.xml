@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Pexeso</string>
+    <string name="colection">оллекция</string>
+    <string name="hrac1">Имя первого игрока</string>
+    <string name="hrac2">Имя второго игрока</string>
+    <string name="play">Играть</string>
+    <string name="player1">Игрок 1</string>
+    <string name="player2">Игрок 2</string>
+    <string name="uhadnute">Найдено:</string>
+    <string name="vyhral">выиграл</string>
+    <string name="remiza">Вничью</string>
+    <string name="player">Игрок</string>
+</resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Pexeso</string>
+    <string name="colection">Colection</string>
+    <string name="hrac1">Name of first player</string>
+    <string name="hrac2">Name of second player</string>
+    <string name="play">Play</string>
+    <string name="player1">Player 1</string>
+    <string name="player2">Player 2</string>
+    <string name="uhadnute">Found:</string>
+    <string name="vyhral">win</string>
+    <string name="remiza">Draw</string>
+    <string name="player">Player</string>
+</resources>

@@ -1,13 +1,14 @@
 <resources>
     <string name="app_name">Pexeso</string>
-    <string name="info">Hra sa načítava</string>
-    <string name="info2">Počkajte prosím</string>
     <string name="play">Hrať</string>
-    <string name="colection">Kolekcia</string>
-    <string name="exit">Koniec</string>
     <string name="player1">Hráč 1</string>
     <string name="player2">Hráč 2</string>
-    <string name="hrac1">Meno prvého hráča</string>
     <string name="hrac2">Meno druhého hráča</string>
     <string name="uhadnute">Najdené:</string>
+    <string name="vyhral">vyhral</string>
+    <string name="colection">Kolekcia</string>
+    <string name="hrac1">Meno prvého hráča</string>
+
+    <string name="remiza">Remíza</string>
+    <string name="player">Hráč</string>
 </resources>
