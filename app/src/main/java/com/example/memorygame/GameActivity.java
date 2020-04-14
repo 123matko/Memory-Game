@@ -34,7 +34,7 @@ public class GameActivity extends Activity {
     private Game game;
     private int[] obrPexesa1;
     private ArrayList<Integer> zvolene = new ArrayList<>();
-    private TextView vyhral;
+
     boolean par;
     int cakaj = 2000;
     Handler handler = new Handler();
@@ -234,7 +234,7 @@ public class GameActivity extends Activity {
     }
 
     public void game() {
-        //initPexeso();
+
 
         hrac1.setText(game.getPlayer1());
         hrac2.setText(game.getPlayer2());
@@ -261,10 +261,10 @@ public class GameActivity extends Activity {
 
         if (bodyH1 > bodyH2) {
 
-            Toast.makeText(getApplicationContext(), getString(R.string.player) + " " +game.getPlayer1() + " " + getString(R.string.vyhral), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.playerN) + " " +game.getPlayer1() + " " + getString(R.string.vyhral), Toast.LENGTH_SHORT).show();
         } else {
             if (bodyH1 < bodyH2) {
-                Toast.makeText(getApplicationContext(), getString(R.string.player) + " " +game.getPlayer2() + " " + getString(R.string.vyhral), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.playerN) + " " +game.getPlayer2() + " " + getString(R.string.vyhral), Toast.LENGTH_SHORT).show();
             }
         }
         if (bodyH1 == bodyH2) {

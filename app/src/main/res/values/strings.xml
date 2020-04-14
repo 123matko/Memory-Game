@@ -10,5 +10,5 @@
     <string name="hrac1">Meno prvého hráča</string>
 
     <string name="remiza">Remíza</string>
-    <string name="player">Hráč</string>
+    <string name="playerN">Hráč</string>
 </resources>

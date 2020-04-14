@@ -10,5 +10,5 @@
     <string name="uhadnute">Найдено:</string>
     <string name="vyhral">выиграл</string>
     <string name="remiza">Вничью</string>
-    <string name="player">Игрок</string>
+    <string name="playerN">Игрок</string>
 </resources>
