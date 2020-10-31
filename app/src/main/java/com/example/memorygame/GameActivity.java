@@ -257,21 +257,25 @@ public class GameActivity extends Activity {
     }
 
     public void result() {
-
-
+        setContentView(R.layout.result);
+        TextView resultText=findViewById(R.id.resultText);
+        String resultString=null;
         if (bodyH1 > bodyH2) {
+            resultString=getString(R.string.playerN) + " " +game.getPlayer1() + " " + getString(R.string.vyhral);
 
-            Toast.makeText(getApplicationContext(), getString(R.string.playerN) + " " +game.getPlayer1() + " " + getString(R.string.vyhral), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), getString(R.string.playerN) + " " +game.getPlayer1() + " " + getString(R.string.vyhral), Toast.LENGTH_SHORT).show();
         } else {
             if (bodyH1 < bodyH2) {
-                Toast.makeText(getApplicationContext(), getString(R.string.playerN) + " " +game.getPlayer2() + " " + getString(R.string.vyhral), Toast.LENGTH_SHORT).show();
+                resultString=getString(R.string.playerN) + " " +game.getPlayer2() + " " + getString(R.string.vyhral);
+                //Toast.makeText(getApplicationContext(), getString(R.string.playerN) + " " +game.getPlayer2() + " " + getString(R.string.vyhral), Toast.LENGTH_SHORT).show();
             }
         }
         if (bodyH1 == bodyH2) {
-            Toast.makeText(getApplicationContext(),  getString(R.string.remiza), Toast.LENGTH_SHORT).show();
+            resultString= getString(R.string.remiza);
+            //Toast.makeText(getApplicationContext(),  getString(R.string.remiza), Toast.LENGTH_SHORT).show();
         }
 
-
+        resultText.setText(resultString);
         handler.postDelayed(new Runnable() {
         @Override
         public void run () {
